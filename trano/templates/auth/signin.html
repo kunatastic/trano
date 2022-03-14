@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+
+<!--  -->
+{% block title %}Sign In | Sign in to Trano {% endblock title%}
+<!--  -->
+{% block content %}
+<div class="h-screen flex">
+  <div
+    class="h-full flex w-1/2 bg-gradient-to-tr from-black to-gray-700 justify-around items-center"
+  >
+    <div>
+      <h1 class="text-white font-bold text-4xl font-sans">Trano</h1>
+      <p class="text-white mt-1">Automated Train ticket manager and reallocation</p>
+    </div>
+  </div>
+  <div class="flex w-1/2 justify-center items-center bg-gray-100">
+    <form class="bg-white p-16" method="post" action="">
+      {% csrf_token %}
+      <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
+      <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
+      <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-gray-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+          />
+        </svg>
+        {{form.username}}
+      </div>
+      <div class="flex items-center border-2 py-2 px-3 rounded-2xl focus:ring">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-gray-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        {{form.password}}
+      </div>
+      <button
+        type="submit"
+        class="block w-full bg-gray-700 hover:bg-gray-900 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+      >
+        Login
+      </button>
+
+      {% if form.errors %}
+      <div class="bg-red-100 border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <div class="font-bold">Error!</div>
+        <div>Either password or username is wrong</div>
+      </div>
+      {% endif %}
+    </form>
+  </div>
+</div>
+{% endblock content %}

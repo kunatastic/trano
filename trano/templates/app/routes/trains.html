@@ -1,0 +1,50 @@
+{% extends 'app/base.html' %}
+
+<!-- -->
+{% block title %} {{title}} {% endblock title %}
+<!-- -->
+
+{% block dashboard %}
+<div class="px-24 py-10 min-h-screen w-full">
+  <div class="flex justify-between items-center">
+    <div class="font-extrabold text-4xl">Trains</div>
+  </div>
+  <div>
+    {% comment %}
+    <div class="flex justify-between">
+      <div>Search</div>
+      <div>Sort and Filter</div>
+    </div>
+    {% endcomment %}
+
+    <div class="grid grid-cols-2 grid-flow-row gap-8 align-center mt-5">
+      {% for train in trains %}
+      <div class="w-full bg-gray-100 py-4 px-8 border-2 border-black hover:bg-white rounded-xl">
+        <a href="/train/{{train.pk}}/coach/">
+          <div class="font-bold text-2xl">
+            {{train.name}} <span class="text-blue-500">[{{train.number}}]</span>
+          </div>
+          <div class="font-bold">Source: <span class="text-blue-500">{{train.source}}</span></div>
+          <div class="font-bold">
+            Destination: <span class="text-blue-500">{{train.destination}}</span>
+          </div>
+          <div class="font-bold">
+            Arrival Time: <span class="text-blue-500">{{train.arrival}}</span>
+          </div>
+          <div class="font-bold">
+            Departure Time: <span class="text-blue-500">{{train.departure}}</span>
+          </div>
+
+          <!-- -->
+          {% for k,v in RoleMap.items %}
+          <!-- -->
+          {% if k == train.train_type %}
+          <div class="rounded-full bg-black text-white mt-2 px-4 py-2 w-fit">{{v}}</div>
+          {% endif %} {% endfor %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock dashboard %}

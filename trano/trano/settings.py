@@ -40,8 +40,10 @@ INSTALLED_APPS = [
 
 
     # CUSTOMS
-    'users'
-    'tailwind'
+    'users',
+    'trains',
+    'application',
+    'passengers',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "/user/signin/"
 LOGOUT_REDIRECT_URL = "/user/signin/"
+
+AUTH_USER_MODEL = 'users.TrainTicketExaminer'

@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+
+<!-- -->
+{% block title %} {{title}} {% endblock title %}
+<!-- -->
+
+{% block dashboard %}
+<div class="px-24 py-10 min-h-screen w-full">
+  <div class="flex justify-between items-center">
+    <div class="font-extrabold text-4xl">Coaches for {{train.name}} [{{train.number}}]</div>
+  </div>
+  <div>
+    <div class="grid grid-cols-3 grid-flow-row gap-8 align-center mt-5">
+      {% for coach in coaches %}
+      <div class="w-full bg-gray-100 py-4 px-8 border-2 border-black hover:bg-white rounded-xl">
+        <a href="/train/{{train.pk}}/coach/{{coach.pk}}/passenger/">
+          <div class="font-bold text-2xl">
+            {% for k,v in train_choices %} {% if k == coach.type %}
+            <span class="text-blue-500">{{coach.number}} - [{{v}}]</span>
+            {% endif %} {% endfor %}
+          </div>
+          <div class="font-bold">
+            Total Seats: <span class="text-blue-500">{{coach.total_seats}}</span>
+          </div>
+          <div class="font-bold">
+            Available Seats: <span class="text-blue-500">{{coach.available_seats}}</span>
+          </div>
+
+          <!-- -->
+          {% for k,v in RoleMap.items %}
+          <!-- -->
+          {% if k == coach.coach_type %}
+          <div class="rounded-full bg-black text-white mt-2 px-4 py-2 w-fit">{{v}}</div>
+          {% endif %} {% endfor %}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock dashboard %}

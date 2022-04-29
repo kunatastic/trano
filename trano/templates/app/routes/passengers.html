@@ -1,0 +1,73 @@
+{% extends 'app/base.html' %}
+
+<!-- -->
+{% block title %} {{title}} {% endblock title %}
+<!-- -->
+
+{% block dashboard %}
+<div class="px-24 py-10 min-h-screen w-full">
+  <div class="flex justify-between items-center">
+    <div class="font-extrabold text-4xl">
+      Passenger for {{train.name}}({{train.number}}) {{coach.number}}
+    </div>
+  </div>
+  <div>
+    <div class="flex flex-col">
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full text-center table-auto">
+              <thead class="border-b">
+                <tr class="border-b bg-gray-800 boder-gray-900">
+                  <th scope="col" class="text-sm text-white px-6 py-4">Seat Number</th>
+                  <th scope="col" class="text-sm text-white px-6 py-4">Name</th>
+                  <th scope="col" class="text-sm text-white px-6 py-4">Source</th>
+                  <th scope="col" class="text-sm text-white px-6 py-4">Destination</th>
+                  <th scope="col" class="text-sm text-white px-6 py-4">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for passenger in passengers %}
+                <tr
+                  class="border-b even:bg-indigo-100 even:border-indigo-200 odd:bg-gray-50 odd:border-gray-200"
+                >
+                  <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {{passenger.seat_number}}
+                  </td>
+                  <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {{passenger.traveller.name}}
+                  </td>
+                  <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {{passenger.source}}
+                  </td>
+                  <td class="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
+                    {{passenger.destination}}
+                  </td>
+                  {% if passenger.boarded %}
+                  <td class="text-sm text-gray-900 bg-green-200 px-6 py-4 whitespace-nowrap">
+                    <a
+                      href="/train/{{train.pk}}/coach/{{coach.pk}}/passenger/{{passenger.pk}}/modify/?boarded=False"
+                    >
+                      <div>boarded</div>
+                    </a>
+                  </td>
+                  {% else %}
+                  <td class="text-sm text-gray-900 bg-red-200 px-6 py-4 whitespace-nowrap">
+                    <a
+                      href="/train/{{train.pk}}/coach/{{coach.pk}}/passenger/{{passenger.pk}}/modify/?boarded=true"
+                    >
+                      Not boarded</a
+                    >
+                  </td>
+                  {% endif %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock dashboard %}

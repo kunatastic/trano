@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="flex w-1/2 justify-center items-center bg-gray-100">
-    <form class="bg-white p-16" method="post" action="">
+    <form class="bg-white p-16 shadow-2xl rounded-lg" method="post" action="">
       {% csrf_token %}
       <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
       <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
@@ -50,6 +50,7 @@
         </svg>
         {{form.password}}
       </div>
+
       <button
         type="submit"
         class="block w-full bg-gray-700 hover:bg-gray-900 mt-4 py-2 rounded-2xl text-white font-semibold mb-2"

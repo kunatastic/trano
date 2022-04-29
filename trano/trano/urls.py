@@ -18,13 +18,21 @@ from django.urls import path
 
 
 from users.views import *
+from application.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # AUTH
     path("user/signin/" , UserSignInView.as_view(), name="user_signin"),
-    path("user/signup/" , UserSignUpView.as_view(), name="user_signup"),
     path("user/logout/" , UserLogOutView.as_view(), name="user_logout"),
 
+    # PLATFORM
+    path("", TrainListView.as_view(), name="platform_welcome"),
+    path("train/", TrainListView.as_view(), name="platform_trains"),
+    path("train/<int:train_pk>/coach/", CoachListView.as_view(), name="platform_train_detail"),
+    path("train/<int:train_pk>/coach/<int:coach_pk>/passenger/", PassengerListView.as_view(), name="platform_train_coach_passenger"),
+
+    # API
+    path("train/<int:train_pk>/coach/<int:coach_pk>/passenger/<int:passenger_pk>/modify/",ModifyPassengerBoardingInfoApi)
 ]

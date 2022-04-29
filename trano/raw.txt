@@ -1,0 +1,44 @@
+from users.models import TrainTicketExaminer
+import datetime
+trainticketexaminer = TrainTicketExaminer(
+    username="IND001A",
+    first_name="Kunal",
+    last_name="Kumar",
+    age=20,
+    phone="1234567890",
+)
+trainticketexaminer.set_password("12345678")
+trainticketexaminer.save()
+
+
+trainticketexaminer = TrainTicketExaminer(
+    username="admin",
+    first_name="Admin",
+    last_name="Admin",
+    age=20,
+    phone="1234567890",
+)
+trainticketexaminer.set_password("admin")
+trainticketexaminer.is_superuser = True
+trainticketexaminer.is_staff = True
+trainticketexaminer.save()
+
+from users.models import Traveller
+traveller = Traveller(
+    name="Kunal",
+    age=20,
+    phone="1234567890",
+)
+traveller.save()
+
+from trains.models import Train
+train = Train(
+    tte = TrainTicketExaminer.objects.get(username="IND001A"),
+    number="123456",
+    name="Karnataka Express",
+    type="SF",
+    source="Bangalore",
+    destination="Mysore",
+    arrival=datetime(),
+    departure="",
+)
